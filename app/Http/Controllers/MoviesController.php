@@ -21,12 +21,6 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        /* Muestra las peliculas que no esten 'eliminadas'
-        
-        $movies = Movie::get()->where('is_deleted', 0); 
-        return view('home', ['movies' => $movies);
-        
-        */
         
         $categories = Categories::get();
 
@@ -39,7 +33,7 @@ class MoviesController extends Controller
                     ->join('categories as c', 'c.id_category', '=', 'mc.id_category')
                     ->where('mc.id_category', $category->id_category)
                     ->orderby('m.calification', 'desc')
-                    ->take(5)
+                    ->take(8)
                     ->get(); 
             
             $movies_by_category[$category->category] = $select;

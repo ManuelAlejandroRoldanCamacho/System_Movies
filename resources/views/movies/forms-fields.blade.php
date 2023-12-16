@@ -1,70 +1,64 @@
 
-    <label for="title_movie">Title Movie
-        <input type="text" name="title_movie" value="{{ old('title_movie', $movie_details->title_movie) }}">
-        @error('title_movie')
-            <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
-    </label>
-
-    <br>
-
-    <label for="description_movie">Description Movie</label>
-    <textarea name="description_movie" value="">{{ old('description_movie', $movie_details->description_movie) }}</textarea>
+    <div class="input-group my-3">
+        <span class="input-group-text">Title Movie</span>
+        <input class="form-control" type="text" name="title_movie" value="{{ old('title_movie', $movie_details->title_movie) }}" placeholder="Example: A New Title Movie" required>
+    </div>
+    @error('title_movie')
+        <br>
+        <small class="msg-error invalid-feedback">{{ $message }}</small>
+    @enderror
+    
+    <div class="input-group my-3">
+        <span class="input-group-text">Desciption Movie</span>
+        <textarea class="form-control" name="description_movie" placeholder="Add a description with 100 or more characters" required>{{ old('description_movie', $movie_details->description_movie) }}</textarea>
+    </div>
     @error('description_movie')
         <br>
-        <small class="msg-error">{{ $message }}</small>
+        <small class="msg-error invalid-feedback">{{ $message }}</small>
     @enderror
 
-    <br>
-
-    <label for="release_date">Release Date
-        <input type="date" name="release_date" value="{{ old('release_date', $movie_details->release_date) }}">
-        @error('release_date')
+    <div class="input-group my-3">
+        <span class="input-group-text">Release Date</span>
+        <input class="form-control" type="date" name="release_date" value="{{ old('release_date', $movie_details->release_date) }}">
+    </div>
+    @error('release_date')
         <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
-    </label>
+        <small class="msg-error invalid-feedback">{{ $message }}</small>
+    @enderror
 
-    <br>
-
-    <label for="duration">Duration
-        <input type="text" name="duration" value="{{ old('duration', $movie_details->duration) }}">
-        @error('duration')
-        <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
-    </label>
     
+    <div class="input-group my-3">
+        <span class="input-group-text">Duration</span>
+        <input class="form-control" type="text" name="duration" value="{{ old('duration', $movie_details->duration) }}" placeholder="Example: 1h 28min" required>
+    </div>    
+    @error('duration')
     <br>
+        <small class="msg-error invalid-feedback">{{ $message }}</small>
+    @enderror
 
-    <label for="image">Image Movie
-        <input type="file" name="image">
-        @error('image')
-        <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
-    </label>
-
+    <div class="input-group my-3">
+        <span class="input-group-text">Movie Image</span>
+        <input class="form-control" type="file" name="image">
+    </div>   
+    @error('image')
     <br>
+        <small class="msg-error invalid-feedback">{{ $message }}</small>
+    @enderror
 
-    <label for="trailler">Trailler Movie
-        <input type="text" name="trailler" value="{{ old('trailler', $movie_details->trailler) }}">
-        @error('trailler')
-        <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
-    </label>
-
+    <div class="input-group my-3">
+        <span class="input-group-text">Trailler Movie</span>
+        <input class="form-control" type="text" name="trailler" value="{{ old('trailler', $movie_details->trailler) }}" placeholder="Example: https://www.example.com" required>
+    </div>
+    @error('trailler')
     <br>
-
-    <label for="calification">Calification
-        <input type="number" step="0.1" min="1" max="5" name="calification" value="{{ old('calification', $movie_details->calification) }}">
-        @error('calification')
-        <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
-    </label>
-
+        <small class="msg-error">{{ $message }}</small>
+    @enderror
+    
+    <div class="input-group my-3">
+        <span class="input-group-text">Calification</span>
+        <input class="form-control" type="number" step="0.1" min="1" max="5" name="calification" value="{{ old('calification', $movie_details->calification) }}" placeholder="Example: 1.8" required>
+    </div>
+    @error('calification')
     <br>
-
+        <small class="msg-error">{{ $message }}</small>
+    @enderror

@@ -5,59 +5,109 @@
 
 @section('content')
 
-    <h1>Home</h1>
+    <!-- PENDIENTE PROXIMO COMMIT: Buscar imagenes que tengan el mismo tamaño para evitar problemas de diseño -->
 
-    <h4><a href="{{ route('movies.all') }}">All Movies</a></h4>
-
-    @if (Auth::check() && Auth::user()->user_rol === 'Admin')
-        {{-- Contenido que solo se mostrará si el usuario es un administrador --}}
-        <h4><a href="{{ route('movies.create') }}">Create a new movie</a></h4>
-        <h4><a href="{{ route('category.index') }}">Show all category</a></h4> 
-    @endif
-
-    <br>
-
-    @foreach ($categories as $category)
-
-        <h3>{{ $category['category'] }}</h3>
-        <br>
-
-        <!-- Recorremos el array asociativo, para la categoria que recorre la seccion de la categoria respectiva y retorna las peliculas -->
-        @foreach ($movies_by_categories[$category['category']] as $movie)
-            
-            <div>
-
-                <a href="{{ route('movies.show', $movie->id_movie) }}">{{ $movie->title_movie }}</a>
-
-                <br>
-
-                <p>{{ $movie->image }}</p>
+    <div class="container">  
                 
-                <img src="{{ asset('/storage/images/'.$movie->image) }}" height="100px" width="100px" alt="Image of {{ $movie->title_movie }}">
+            <h1 class="h2 py-2 text-center">¡Most Popular Movies!</h1>
 
-                <p>{{ $movie->calification }} Estrellas</p>
+            @if (Auth::check() && Auth::user()->user_rol === 'Admin')
+            
+                <div class="col-12 text-center mx-auto">
+                    <a class="btn btn-info mx-2" href="{{ route('movies.create') }}">Create a new movie</a>
+                    <a class="btn btn-success mx-2" href="{{ route('category.index') }}">Show all category</a>                
+                </div>
+            
+            @endif
+    
+            @foreach ($categories as $category)
 
-                <p>{{ $movie->description_movie }}</p>
+                <h2 class="h4 py-3 text-center">{{ $category['category'] }}</h2>
 
-                @if (Auth::check() && Auth::user()->user_rol === 'Admin')
-                    {{-- Contenido que solo se mostrará si el usuario es un administrador --}}
-                    <a href="{{ route('movies.edit', $movie->id_movie) }}">Edit Movie</a>
+                <div class="card-group">
 
-                    <form action="{{ route('movies.destroy', $movie->id_movie) }}" method="post">
-                        @csrf
-                        @method('DELETE')
+                    <div class="row">
+                    
+                        @foreach ($movies_by_categories[$category['category']] as $movie)                
+                        
+                            <div class="col-6 col-md-6 col-lg-3 col-xl-3 my-3">
+                        
+                                <a class="text-decoration-none" href="{{ route('movies.show', $movie->id_movie) }}">
 
-                        <button type="submit">Delete Movie</button>
-                    </form>                    
-                @endif
-               
-                <br>
-                <br>
+                                    <div class="card border h-100">
 
-            </div>
+                                        <img class="card-img-top img-fluid" src="{{ asset('/storage/images/'.$movie->image) }}" height="400px" width="auto" alt="Image of {{ $movie->title_movie }}">
 
-        @endforeach
+                                        <div class="card-img-overlay">
+                                            <span class="h6 text-warning font-weight-bold">{{ $movie->calification }} ★</span>
+                                        </div>                                
 
-    @endforeach
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ $movie->title_movie }}</h5>
+                                        
+                                            @if (Auth::check() && Auth::user()->user_rol === 'Admin')
+                                    
+                                                <div class="btn-group">
+                                                    <a class="btn btn-warning rounded mx-1" href="{{ route('movies.edit', $movie->id_movie) }}">Edit</a>
+                                                
+                                                    <button class="btn btn-danger rounded mx-1" data-bs-toggle="modal" data-bs-target="#modal{{ $movie->id_movie }}">Delete</button>
+                                            
+                                                    <div class="modal fade" id="modal{{ $movie->id_movie }}" data-bs-backdrop="static">
+                                                    
+                                                        <div class="modal-dialog modal-dialog-scrollable">
+                                                    
+                                                            <div class="modal-content">
+        
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Delete Movie?</h5>
+                                                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                    
+                                                                <div class="modal-body">
+                                                                
+                                                                    <p>If you decide to delete the movie <b>{{ $movie->title_movie }}</b> it cannot be recovered and will be permanently deleted from the database, are you sure?</p>
+                                                                
+                                                                </div>
+                                                    
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+                                                                    <form action="{{ route('movies.destroy', $movie->id_movie) }}" method="post">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                
+                                                                        <button class="btn btn-danger" type="submit">I'm sure</button>
+                                                                    </form>
+                                                                </div>
+                                                    
+                                                            </div>
+                                                    
+                                                        </div>
+                                            
+                                                    </div>
+                                    
+                                                </div>                                               
+        
+                                            @endif    
+
+                                        </div>
+
+                                    </div>
+                                
+                                </a>
+                                
+                            
+                            </div>
+                            
+                        @endforeach
+
+                    </div>    
+
+                </div>
+
+            @endforeach
+                    
+        </div>
+            
+    </div>
 
 @endsection

@@ -5,18 +5,35 @@
 
 @section('content')
 
-    <br>
+    <div class="container">
 
-    <h2>Register Movie</h2>
+        <div class="row">
 
-    <form enctype="multipart/form-data" action="{{ route('movies.store') }}" method="post">
+            <div class="col-1 col-md-2 col-lg-2"></div>
 
-        @csrf <!-- obligatorio para que el formluario funcione (evita ataques csrf, validando el origen del formulario) -->
+            <div class="col-10 col-md-8 col-lg-8 my-3">
+                
+                <h2 class="h3 text-center">Add a New Movie</h2>
 
-        @include('movies/forms-fields')
+                <form enctype="multipart/form-data" action="{{ route('movies.store') }}" method="post">
+            
+                    @csrf    
+                    
+                        @include('movies/forms-fields')
+                
+                        <div class="col-12 text-center">
+                            <input class="btn btn-success" type="submit" value="Register">
+                            <a class="btn btn-primary text-decoration-none my-2" href="{{ route('home') }}">Back</a>
+                        </div>
 
-        <input type="submit" value="Register">
+                </form>                    
 
-    </form>
+            </div>
+
+            <div class="col-1 col-md-2 col-lg-2"></div>
+
+        </div>
+        
+    </div>
     
 @endsection

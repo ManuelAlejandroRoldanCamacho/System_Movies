@@ -5,18 +5,44 @@
 
 @section('content')
 
-    <br>
+    <div class="container">
 
-    <h2>Register Category</h2>
+        <div class="row">
 
-    <form action="{{ route('category.store') }}" method="post">
+            <div class="col-1 col-md-2 col-lg-2"></div>
 
-        @csrf 
+            <div class="col-10 col-md-8 col-lg-8">
+                
+                <h1 class="h2 text-center my-5">Add a New Category</h1>
 
-        @include('categories/forms-fields')
+                <form class="input-group" action="{{ route('category.store') }}" method="post">
 
-        <input type="submit" value="Register">
+                    @csrf 
 
-    </form>
+                    @include('categories/forms-fields')
+
+                    <div class="col-12 text-center my-3">
+
+                        <a class="btn btn-warning" href="{{ route('category.index') }}">Back</a>
+
+                        <input class="btn btn-success" type="submit" value="Register">
+
+                    </div>
+
+                </form>
+                
+            </div>
+
+            <div class="col-1 col-md-2 col-lg-2"></div>
+
+        </div>
+
+        <div class="py-5"></div>
+
+        <div class="py-5"></div>
+
+        <div class="py-5"></div>
+
+    </div>
     
 @endsection

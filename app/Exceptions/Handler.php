@@ -27,4 +27,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /* agregar metodo render y unauthenticated que redireccionen al index en caso de que el usuario quiera hacer algo
+       extraño en las rutas (logueado o no) */
 }

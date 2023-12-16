@@ -5,45 +5,61 @@
 
 @section('content')
 
-    <br>
-    <br>
+    <div class="container">
 
-    <form action="{{ route('login') }}" method="post">
+        <div class="row"></div>
 
-        @csrf
+        <div class="row">
 
-        <label for="email">User</label>
-        <input type="email" name="email" required value="{{ old('email') }}" autofocus='autofocus'>
-        @error('email')
-            <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
+            <h1 class="h3 text-center my-4">Login</h1>
 
-        <br>
+            <div class="col-1 col-md-2 col-lg-2"></div>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        @error('password')
-            <br>
-            <small class="msg-error">{{ $message }}</small>
-        @enderror
+            <div class="col-10 col-md-8 col-lg-8 py-4">
 
-        <br>
+                <form action="{{ route('login') }}" method="post">
+                    @csrf
+    
+                    <div class="input-group my-3">
+                        <span class="input-group-text">User Name</span>
+                        <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Example: JohnDoe@example.com" required>
+                    </div>
+                    @error('email')
+                        <br>
+                        <small class="msg-error invalid-feedback">{{ $message }}</small>
+                    @enderror
+    
+                    <div class="input-group my-3">
+                        <span class="input-group-text">Password</span>
+                        <input class="form-control" type="password" name="password" required>
+                    </div>
+                    @error('password')
+                        <br>
+                        <small class="msg-error invalid-feedback">{{ $message }}</small>
+                    @enderror
+            
+                    <input class="form-check-input" type="checkbox" name="remember"> 
+                    <span class="form-cheel-label">Remember</span>
+            
+                    <button class="btn btn-primary" type="submit">Login</button>
+            
+                    <a class="link" href="#">Forgot your password?</a>
 
-        <input type="checkbox" name="remember"> 
-        <span>Remember</span>
+                </form>    
 
-        <br>
+            </div>
 
-        <button type="submit">Login</button>
+            <div class="col-1 col-md-2 col-lg-2"></div>
 
-        <br>
+        </div>
+        
+        <div class="py-5"></div>
 
-        <a href="#">Forgot your password?</a>
-        <a href="{{ route('register') }}">Don't have an account? Register</a>
+        <div class="py-5"></div>
 
-    </form>
+        <div class="py-4"></div>
 
-    <br>
+
+    </div>
 
 @endsection

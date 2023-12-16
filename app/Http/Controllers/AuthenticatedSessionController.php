@@ -14,10 +14,6 @@ class AuthenticatedSessionController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        //Probar la validacion de usuario en las vistas y quitar la vista detallada de categorias detalladas
-
-        //Si lo anterior se termina empezar a estudiar boostrap
-
         if(!Auth::attempt($credentials, $request->boolean('remember'))){
 
             throw ValidationException::withMessages([
