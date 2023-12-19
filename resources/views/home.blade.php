@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <!-- PENDIENTE PROXIMO COMMIT: Buscar imagenes que tengan el mismo tamaño para evitar problemas de diseño -->
+    <!-- Hacer el commit con estos cambios -->
 
     <div class="container">  
                 
@@ -26,7 +26,7 @@
 
                 <div class="card-group">
 
-                    <div class="row">
+                    <div class="row mx-auto">
                     
                         @foreach ($movies_by_categories[$category['category']] as $movie)                
                         
@@ -36,8 +36,9 @@
 
                                     <div class="card border h-100">
 
-                                        <img class="card-img-top img-fluid" src="{{ asset('/storage/images/'.$movie->image) }}" height="400px" width="auto" alt="Image of {{ $movie->title_movie }}">
-
+                                        <img class="card-img-top d-none d-sm-block" src="{{ asset('/storage/images/'.$movie->image) }}" height="400px" width="auto" alt="Image of {{ $movie->title_movie }}">
+                                        <img class="card-img-top d-block d-sm-none" src="{{ asset('/storage/images/'.$movie->image) }}" height="300px" width="auto" alt="Image of {{ $movie->title_movie }}">
+                                        
                                         <div class="card-img-overlay">
                                             <span class="h6 text-warning font-weight-bold">{{ $movie->calification }} ★</span>
                                         </div>                                

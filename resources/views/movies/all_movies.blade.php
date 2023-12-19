@@ -20,8 +20,9 @@
                         <a class="text-decoration-none" href="{{ route('movies.show', $movie->id_movie) }}">
 
                             <div class="card border h-100">
-                                
-                                <img class="card-img-top img-fluid" src="{{ asset('/storage/images/'.$movie->image) }}" height="400px" width="auto" alt="Image of {{ $movie->title_movie }}">
+
+                                <img class="card-img-top d-none d-sm-block" src="{{ asset('/storage/images/'.$movie->image) }}" height="400px" width="auto" alt="Image of {{ $movie->title_movie }}">
+                                <img class="card-img-top d-block d-sm-none" src="{{ asset('/storage/images/'.$movie->image) }}" height="300px" width="auto" alt="Image of {{ $movie->title_movie }}">
 
                                 <div class="card-img-overlay">
                                     <span class="h6 text-warning font-weight-bold">{{ $movie->calification }} ★</span>
@@ -35,7 +36,7 @@
                                 
                                         <div class="btn-group">
             
-                                            <a class="btn btn-warning rounded mx-1" href="{{ route('movies.edit', $movie->id_movie) }}">Edit Movie</a>
+                                            <a class="btn btn-warning rounded mx-1" href="{{ route('movies.edit', $movie->id_movie) }}">Edit</a>
                                         
                                             <button class="btn btn-danger rounded mx-1" data-bs-toggle="modal" data-bs-target="#modal{{ $movie->id_movie }}">Delete</button>
                                         
