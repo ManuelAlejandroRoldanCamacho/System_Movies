@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 
 /* Rutas Generales */
+Route::get('/search_movie', [MoviesController::class, 'search_movie'])->name('search');
+
 Route::get('/', [MoviesController::class, 'index'])->name('home'); 
 
 Route::view('/register', 'auth.register')->name('register');
@@ -31,9 +33,7 @@ Route::resource('movies', MoviesController::class, [
     'index' 
 ]);
 
-Route::get('movies/movies_by_category/{id_category}/', [MoviesController::class, 'movies_by_category'])->name('movies.by_category');
-Route::get('all_movies', [MoviesController::class, 'all_movies'])->name('movies.all');
-
+Route::get('/all_movies', [MoviesController::class, 'all_movies'])->name('movies.all');
 
 /* Rutas Especificas por modelo Categories */
 

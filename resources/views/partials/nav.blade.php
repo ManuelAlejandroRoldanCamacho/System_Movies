@@ -3,15 +3,19 @@
 
         <div class="container-fluid">
     
-            <button class="navbar-toggler border" data-bs-toggle="collapse" data-bs-target="#menu">
+            <button type="button" class="navbar-toggler border" data-bs-toggle="collapse" data-bs-target="#menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="d-block d-lg-none">
-                <button class="btn btn-dark border" data-bs-toggle="collapse" data-bs-target="#searchForm">
-                    <span class="fas fa-search"></span>
-                </button>
-            </div>
+            @auth
+                
+                <div class="d-block d-lg-none">
+                    <button type="button" class="btn btn-dark border" data-bs-toggle="collapse" data-bs-target="#searchForm">
+                        <span class="fas fa-search"></span>
+                    </button>
+                </div>
+
+            @endauth
 
             <div class="collapse navbar-collapse" id="menu">
     
@@ -26,10 +30,9 @@
                     </li>
 
                     <div class="nav-item mx-lg-2 d-none d-lg-block">
-                        <form class="input-group" action="#" method="post">
-                            @csrf
-                            <input class="form-control" type="text" placeholder="Search movies here">
-                            <button class="btn btn-primary" type="submit">Find</button>
+                        <form class="input-group" action="{{ route('search') }}" method="GET">
+                            <input class="form-control" type="text" name="search" placeholder="Search movies here">
+                            <button class="btn btn-primary" name="btn-form" type="submit">Search</button>
                         </form>
                     </div>
                                 
@@ -61,10 +64,10 @@
 
     </nav>
 
-    <div class="collapse w-100" id="searchForm">
-        <form class="input-group mt-2" action="#" method="post">
-            @csrf
-            <input class="form-control" type="text" placeholder="Search movies here">
-            <button class="btn btn-primary" type="submit">Find</button>
+    <div id="searchForm" class="collapse w-100">
+        <form id="search-form" class="input-group mt-2" action="{{ route('search') }}" method="GET">
+            <input class="form-control" name="search" type="text" placeholder="Search movies here">
+            <button class="btn btn-primary" name="btn-search-form" type="submit">Search</button>
         </form>
     </div>
+

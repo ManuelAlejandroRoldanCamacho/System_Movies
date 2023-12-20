@@ -6,6 +6,7 @@ use App\Http\Requests\MoviesRequest;
 use App\Models\Movie;
 use App\Models\Categories;
 use App\Models\Movies_Categories;
+use App\Http\Requests\SearchMovieRequest;
 use Illuminate\Support\Facades\Storage;
 
 class MoviesController extends Controller
@@ -13,7 +14,7 @@ class MoviesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['index', 'show', 'all_movies', 'movies_by_categories']]);
+        $this->middleware('admin', ['except' => ['index', 'show', 'all_movies', 'search_movie']]);
     }
 
     /**
@@ -187,16 +188,18 @@ class MoviesController extends Controller
     }
 
     
-    public function movies_by_category(Categories $id_category){
+    public function search_movie(SearchMovieRequest $request){
 
         $movies = Movies_Categories::from('movies_categories AS mc')
             ->join('categories as c', 'c.id_category', '=', 'mc.id_category')
             ->join('movies as m', 'm.id_movie', '=', 'mc.id_movie')
             ->select('m.id_movie', 'm.title_movie', 'm.description_movie' ,'m.calification', 'm.image')
-		    ->where('mc.id_category', $id_category->id_category)
+            ->distinct()
+		    ->where('m.title_movie', 'like' , '%'.$request->search.'%')
+            //->orWhere('c.category', 'like' , '%'.$search.'%')
             ->get();
 
-        return view('movies.by_category', ['movies' => $movies]);
+        return view('movies.search_movie', ['movies' => $movies]);
 
     }
 

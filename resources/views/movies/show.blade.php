@@ -74,16 +74,12 @@
                                     @else
     
                                         <!-- Vista para usuarios -->
-                                        <ul class="list-unstyled">
-    
-                                            @foreach ($movie_categories as $movie_category)
-    
-                                                <li class="d-inline mx-1"><a class="text-decoration-none" href="{{ route('movies.by_category', $movie_category->id_category) }}">{{ $movie_category->category }}</a></li>    
-    
-                                            @endforeach
-                                
-                                        </ul>
-    
+                                        @foreach ($movie_categories as $movie_category)
+
+                                            <p class="d-inline mx-1">{{ $movie_category->category }}</p>    
+
+                                        @endforeach
+
                                     @endif
                                 
                                 </div>

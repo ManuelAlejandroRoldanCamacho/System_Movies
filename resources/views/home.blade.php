@@ -5,7 +5,24 @@
 
 @section('content')
 
-    <!-- Hacer el commit con estos cambios -->
+    <!-- 
+    
+        PENDIENTES: 
+
+        1. Terminar la Barra de busqueda (usar la vista by_category a search_movie) - HECHO
+
+        2. Arreglar los accesos en el headler (exceptions) - PENDIENTE
+        
+        3. Arreglar la consulta para que muestre peliculas diferentes (usar un numero aleatorio (idea 1)) - PENDIENTE
+
+        4. Agregar la api de login con google/facebook/etc... - PENDIENTE
+
+        5. Corregir la vista de show movies para que muestre las imagenes almacenadas (eliminar) y agregar otra nueva - PENDIENTE
+
+        5.1 Corregir como se almacenan las imagenes (nombre) tomando la cadena de texto y convertirla
+            quitando caracteres y dejandola algo asi: nombre_pelicula.jpg - PENDIENTE
+
+    -->
 
     <div class="container">  
                 
@@ -44,11 +61,13 @@
                                         </div>                                
 
                                         <div class="card-body text-center">
+
                                             <h5 class="card-title">{{ $movie->title_movie }}</h5>
                                         
                                             @if (Auth::check() && Auth::user()->user_rol === 'Admin')
                                     
                                                 <div class="btn-group">
+                                                    
                                                     <a class="btn btn-warning rounded mx-1" href="{{ route('movies.edit', $movie->id_movie) }}">Edit</a>
                                                 
                                                     <button class="btn btn-danger rounded mx-1" data-bs-toggle="modal" data-bs-target="#modal{{ $movie->id_movie }}">Delete</button>
@@ -95,7 +114,6 @@
                                     </div>
                                 
                                 </a>
-                                
                             
                             </div>
                             

@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- this layout is for NOT users login -->
     @include('partials.nav')
 
     @if (session('status'))
